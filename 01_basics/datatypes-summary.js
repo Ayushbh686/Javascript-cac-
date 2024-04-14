@@ -12,7 +12,7 @@ let userEmail;
 const id = Symbol('123')
 const anotherId = Symbol('123')
 
-console.log(id === anotherId);
+console.log(id === anotherId);  //false (symbol give diff return value even if same value passed)
 
 // const bigNumber = 3456543576654356754n
 
@@ -28,10 +28,10 @@ let myObj = {
     age: 22,
 }
 
-const myFunction = function(){
+const myFunction = function(){    // function ka data type function (function object)
     console.log("Hello world");
 }
 
-console.log(typeof anotherId);
+console.log(typeof anotherId);   // null data type is object   
 
 // https://262.ecma-international.org/5.1/#sec-11.4.3
