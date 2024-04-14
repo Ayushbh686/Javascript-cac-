@@ -2,7 +2,7 @@ const accountId = 144553
 let accountEmail = "hitesh@google.com"
 var accountPassword = "12345"
 accountCity = "Jaipur"
-let accountState;
+let accountState; // print undefined 
 
 // accountId = 2 // not allowed
 
@@ -19,4 +19,4 @@ because of issue in block scope and functional scope
 */
 
 
-console.table([accountId, accountEmail, accountPassword, accountCity, accountState])
+console.table([accountId, accountEmail, accountPassword, accountCity, accountState])  // used to print the table 
