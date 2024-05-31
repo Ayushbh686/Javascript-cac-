@@ -192,6 +192,81 @@ function newGame() {
 
 ```
 
+## alternative Solution 
+``` javascipt
+const userInput = document.querySelector("#guessField");
+const submit = document.querySelector('#subt');
+let num = Math.floor(Math.random() * 100 + 1);
+let prevGuesses = document.querySelector('.guesses');
+let remGuesses = 10; // Initialize remaining guesses
+const resultOutput = document.querySelector('.lowOrHi');
+const guessesRemaining = document.querySelector('.lastResult');
+
+const resetButton = document.createElement('button');
+resetButton.innerHTML = 'RESTART GAME';
+resetButton.style.display = 'none';
+document.body.appendChild(resetButton);
+resetButton.style.marginLeft = '90px';
+
+submit.addEventListener('click', function(e) {
+    e.preventDefault();
+    let guess = parseInt(userInput.value); // Get the value of the guess inside the event listener
+    if (!isNaN(guess)) {
+        CheckGuess(guess);
+    }
+});
+
+function CheckGuess(guess) {
+    if (num === guess) {
+        resultOutput.innerHTML = `<h3>You have guessed the correct number ${num}!</h3>`;
+        EndGame();
+    } else if (num > guess) {
+        resultOutput.innerHTML = `<h3>Your guess is TOO low!</h3>`;
+        updateValues(guess);
+    } else {
+        resultOutput.innerHTML = `<h3>Your guess is TOO high!</h3>`;
+        updateValues(guess);
+    }
+}
+
+function updateValues(guess) {
+    prevGuesses.innerText += `${guess} , `;
+    remGuesses -= 1;
+    guessesRemaining.innerText = remGuesses;
+    
+    if (remGuesses === 0) {
+        resultOutput.innerHTML = `<h3>Your attempts are over, the number was ${num}.</h3>`;
+        EndGame();
+    } else {
+        userInput.value = ''; // Clear the input field for the next guess
+    }
+}
+
+function EndGame() {
+    submit.setAttribute('disabled', ''); // Disable the submit button
+    userInput.setAttribute('disabled', ''); // Disable the input field
+    resultOutput.innerHTML += `<h3>Game over! The number was ${num}.</h3>`;
+    resetButton.style.display = 'block';
+    resetButton.addEventListener('click' , resetGame);
+}
+
+
+// Function to reset the game if needed
+function resetGame(e) {
+    e.preventDefault();
+    remGuesses = 10;
+    prevGuesses.innerText = '';
+    userInput.removeAttribute('disabled');
+    submit.removeAttribute('disabled');
+    resultOutput.innerHTML = '';
+    guessesRemaining.innerText = remGuesses;
+    userInput.value = '';
+    resetButton.style.display = 'none';
+    num = Math.floor(Math.random() * 100 + 1);
+}
+
+```
+
 
 # Project 5 solution
 
